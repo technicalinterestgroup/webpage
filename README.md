@@ -1,7 +1,9 @@
 # webpage
 blog webpage
 
-功能没做完 没有做 pre-commit校验  commit的时候 加上  --no-verify
+功能没做完 没有做 pre-commit校验  如果commit 提示需要有内容 fixed 或者 commit 失败
+
+在 commit 的时候最后加上  --no-verify
 
 启动项目 npm run serve
 
