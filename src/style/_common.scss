@@ -1,0 +1,118 @@
+@for $idx from 0 through 50 {
+  .pad {
+    &-#{$idx} {
+      @include padding($idx);
+    }
+    &-t-#{$idx} {
+      @include padding($idx, top);
+    }
+    &-b-#{$idx} {
+      @include padding($idx, bottom);
+    }
+    &-l-#{$idx} {
+      @include padding($idx, left);
+    }
+    &-r-#{$idx} {
+      @include padding($idx, right);
+    }
+    &-x-#{$idx} {
+      @include padding($idx, x);
+    }
+    &-y-#{$idx} {
+      @include padding($idx, y);
+    }
+  }
+  .mag {
+    &-#{$idx} {
+      @include margin($idx);
+    }
+    &-t-#{$idx} {
+      @include margin($idx, top);
+    }
+    &-b-#{$idx} {
+      @include margin($idx, bottom);
+    }
+    &-l-#{$idx} {
+      @include margin($idx, left);
+    }
+    &-r-#{$idx} {
+      @include margin($idx, right);
+    }
+    &-x-#{$idx} {
+      @include margin($idx, x);
+    }
+    &-y-#{$idx} {
+      @include margin($idx, y);
+    }
+  }
+  .f {
+    &-#{$idx} {
+      font-size: #{$idx}px !important;
+    }
+  }
+}
+
+.white {
+  color: $vWhite;
+}
+
+.black {
+  color: $vBlack;
+}
+
+.c {
+  &-qq {
+    color: $cQQ;
+  }
+  &-333 {
+    color: $c333;
+  }
+  &-666 {
+    color: $c666;
+  }
+  &-999 {
+    color: $c999;
+  }
+  &-ccc {
+    color: $cccc;
+  }
+  &-eee {
+    color: $ceee;
+  }
+  &-red {
+    color: $cRed;
+  }
+  &-main {
+    color: $cMain;
+  }
+  &-pink {
+    color: $cPink;
+  }
+  &-green {
+    color: $cGreen;
+  }
+  &-weibo {
+    color: $cWeibo;
+  }
+  &-orange {
+    color: $cOrange;
+  }
+  &-wechat {
+    color: $cWechat;
+  }
+  &-f3f9ff {
+    color: $cf3f9ff;
+  }
+  &-eaecf0 {
+    color: $ceaecf0;
+  }
+}
+
+.bg {
+  &-white {
+    background: $vWhite;
+  }
+  &-content {
+    background: $cContent;
+  }
+}

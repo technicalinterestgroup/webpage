@@ -1,0 +1,27 @@
+@mixin padding($val: 1, $pos: all) {
+  @if $pos == all {
+    padding: #{$val}px !important;
+  } @else if $pos == x {
+    padding-left: #{$val}px !important;
+    padding-right: #{$val}px !important;
+  } @else if $pos == y {
+    padding-top: #{$val}px !important;
+    padding-bottom: #{$val}px !important;
+  } @else {
+    padding-#{$pos}: #{$val}px !important;
+  }
+}
+
+@mixin margin($val: 1, $pos: all) {
+  @if $pos == all {
+    margin: #{$val}px !important;
+  } @else if $pos == x {
+    margin-left: #{$val}px !important;
+    margin-right: #{$val}px !important;
+  } @else if $pos == y {
+    margin-top: #{$val}px !important;
+    margin-bottom: #{$val}px !important;
+  } @else {
+    margin-#{$pos}: #{$val}px !important;
+  }
+}
