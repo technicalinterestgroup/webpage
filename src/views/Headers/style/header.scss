@@ -2,6 +2,65 @@ a {
   cursor: pointer;
 }
 
+nav .sign-up, nav .sign-up:hover {
+    transition: .1s ease-in;
+    -webkit-transition: .1s ease-in;
+    -moz-transition: .1s ease-in;
+    -o-transition: .1s ease-in;
+    -ms-transition: .1s ease-in;
+}
+
+nav .sign-up {
+    float: right;
+    width: 80px;
+    height: 38px;
+    line-height: 24px;
+    margin: 9px 5px 0 15px;
+    border: 1px solid rgba(236,97,73,.7);
+    border-radius: 20px;
+    font-size: 15px;
+    color: #ea6f5a;
+    background-color: transparent;
+}
+
+nav .sign-up:hover {
+    color: #ec6149;
+    border-color: #ec6149;
+    background-color: rgba(236,97,73,.05);
+}
+
+nav .log-in, nav .log-in:hover {
+    color: #969696;
+}
+nav .log-in {
+    float: right;
+    margin: 11px 6px 0 10px;
+    font-size: 15px;
+}
+
+.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #333;
+}
+
 .dropdown-menu {
   margin-top: 0;
   border-color: transparent;
@@ -29,4 +88,29 @@ a {
   border-radius: 4px;
   box-shadow: 0 6px 12px rgba(0,0,0,.175);
   background-clip: padding-box;
+}
+
+.avatar:before {
+  content: "";
+  position: relative;
+  /* top: 18px; */
+  left: 60px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #999;
+}
+
+@media (min-width: 1439px) {
+  /deep/ .menu-icon {
+      margin-right: 5px;
+      font-size: 20px;
+      font-weight: 400;
+  }
+}
+
+
+@media (max-width: 1439px) and (min-width: 1081px) {
+  /deep/ .menu-icon {
+      display: none;
+  }
 }

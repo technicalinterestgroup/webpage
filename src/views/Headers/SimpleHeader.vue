@@ -10,8 +10,8 @@
       <div class="container">
         <ul>
           <li class="tab" v-for="(nav, index) in navTitles" :key="nav" @click="tabAction(index)" :class="{active: tabActive===index}">
-            <SvgIcon :iconClass="icons[index]" />
-            <span>{{nav}}</span>
+            <SvgIcon :iconClass="icons[index]" class="menu-icon"/>
+            <span class="menu-text">{{nav}}</span>
           </li>
           <li class="search">
             <form accept-charset="UTF-8" action="/so/search" method="get">
@@ -29,23 +29,34 @@
       <!-- 用户操作模块 -->
       <div class="mode">
         <!-- 通知 -->
-        <span class="notice">
+        <div class="notice" v-if="hasLogined">
           <SvgIcon iconClass="notification" />
-        </span>
-        <!-- 用户 -->
-        <div class="user">
-          <a href="javascript:void(0)">
-            <img :src="defaultSrc" alt="">
-          </a>
           <ul class="dropdown-menu">
-            <li v-for="item in menus" :key="item.authName">
+            <li v-for="item in noticeList" :key="item.authName">
               <a :href="item.url">
-                <SvgIcon :iconClass="item.icon" />
+                <SvgIcon :iconClass="item.icon"/>
                 <span>{{item.authName}}</span>
               </a>
             </li>
           </ul>
         </div>
+        <!-- 用户 -->
+        <div class="user" v-if="hasLogined">
+          <a href="javascript:void(0)" class="avatar">
+            <img :src="defaultSrc" alt="">
+          </a>
+          <ul class="dropdown-menu">
+            <li v-for="item in menus" :key="item.authName">
+              <a :href="item.url">
+                <SvgIcon :iconClass="item.icon"/>
+                <span>{{item.authName}}</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- 登录/注册 -->
+        <a class="btn sign-up" href="/register" v-if="!hasLogined">注册</a>
+        <a class="btn log-in" href="/login" v-if="!hasLogined">登录</a>
       </div>
     </div>
   </nav>
@@ -57,14 +68,29 @@ export default {
   name: 'SimpleHeader',
   data () {
     return {
-      navTitles: ['首页', '博客', '问答', '资源', '关于'],
+      navTitles: ['发现', '博客', '问答', '资源', '关于'],
       icons: ['home', 'eblog', 'question', 'source', 'about'],
       tabActive: 0,
       keywords: '',
       src: '',
       menus: [],
       userName: '',
-      password: ''
+      password: '',
+      noticeList: [
+        {
+          url: '/notice/like',
+          icon: 'commend',
+          authName: '赞',
+          count: null
+        },
+        {
+          url: '/notice/comment',
+          icon: 'comment',
+          authName: '评论',
+          count: null
+        }
+      ],
+      hasLogined: false
     }
   },
   mounted () {
@@ -98,7 +124,7 @@ export default {
     border-color: #f0f0f0;
     border-width: 0 0 1px;
     .width-limit {
-      min-width: 768px;
+      min-width: 1000px;
       max-width: 1440px;
       margin: 0 auto;
       .logo {
@@ -129,11 +155,10 @@ export default {
             line-height: 26px;
             list-style: none;
             float: left;
-            margin-right: 15px;
+            margin-right: 10px;
             color: $v333;
             /deep/ .svg-icon {
               font-size: 20px;
-              margin-right: 5px;
               font-weight: 400;
             }
           }
@@ -219,21 +244,57 @@ export default {
         margin-right: 20px;
         color: $v333;
         font-size: 20px;
+        .dropdown-menu {
+          left: auto;
+          border-radius: 0 0 4px 4px;
+          display: none;
+          border-color: #f0f0f0;
+          li {
+            line-height: 30px;
+            a {
+             padding: 10px 20px;
+             line-height: 30px;
+             display: block;
+             clear: both;
+             font-weight: 400;
+             color: $v333;
+             white-space: nowrap;
+           }
+           &:hover {
+             background-color: #f5f5f5;
+           }
+           /deep/ .svg-icon {
+             margin-right: 15px;
+             font-size: 18px;
+             color: $vTheme;
+             vertical-align: middle;
+           }
+          }
+        }
         .notice {
+          position: relative;
+          margin-right: 20px;
+          padding-left: 15px;
+          padding-right: 5px;
+          cursor: pointer;
+          display: inline-block;
           /deep/ .svg-icon {
             font-size: 20px;
-            margin-right: 5px;
+            margin-right: 15px;
             font-weight: 400;
           }
-          margin-right: 20px;
-          cursor: pointer;
           &:hover {
-            color: $vTheme;
+            background: $vHover;
+            .dropdown-menu {
+              display: block;
+              left: 0;
+              color: $vTheme
+            }
           }
         }
         .user {
           float: right;
-          margin-right: 15px;
+          margin-right: 100px;
           height: 100%;
           img {
             margin-top:5px;
@@ -242,7 +303,8 @@ export default {
             border-radius: 50%;
           }
           a {
-            padding: 0 10px;
+            padding-left: 5px;
+            padding-right: 25px;
           }
           &:hover {
             background: $vHover;
@@ -250,31 +312,22 @@ export default {
               display: block;
             }
           }
-          .dropdown-menu {
-            left: auto;
-            border-radius: 0 0 4px 4px;
-            display: none;
-            border-color: #f0f0f0;
-            li {
-              line-height: 30px;
-              a {
-               padding: 10px 20px;
-               line-height: 30px;
-               display: block;
-               clear: both;
-               font-weight: 400;
-               color: $v333;
-               white-space: nowrap;
-             }
-             /deep/ .svg-icon {
-               margin-right: 15px;
-               font-size: 18px;
-               color: $vTheme;
-               vertical-align: middle;
-             }
-            }
-          }
         }
+      }
+    }
+    @media (min-width: 1239px) {
+      /deep/ .menu-icon {
+          margin-right: 5px;
+      }
+    }
+    @media (max-width: 1239px) and (min-width: 1122px) {
+      /deep/ .menu-icon {
+          display: none;
+      }
+    }
+    @media (max-width: 1122px) and (min-width: 768px) {
+      .menu-text {
+          display: none;
       }
     }
   }

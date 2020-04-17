@@ -25,6 +25,13 @@ let routes = [
           content: () => import(/* webpackChunkName: "IndexContent" */ '@/views/Contents/IndexContent.vue'),
           footer: () => import(/* webpackChunkName: "CommonFooter" */ '@/views/Footers/CommonFooter.vue')
         }
+      },
+      {
+        path: 'login',
+        name: 'login',
+        components: {
+          content: () => import(/* webpackChunkName: "Login" */ '@/views/Login/index.vue'),
+        }
       }
     ]
   }

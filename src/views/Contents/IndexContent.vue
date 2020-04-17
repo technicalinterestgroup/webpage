@@ -15,7 +15,7 @@ export default {
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
-    // border: 1px solid #f0f;
+    padding-top: 56px;
     height: calc(100vh - 220px)
   }
 </style>
